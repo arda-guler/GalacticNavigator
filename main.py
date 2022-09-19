@@ -129,8 +129,8 @@ def main():
                             total_distance_covered += get_dist_between(route[si-1], route[si])
 
                     total_stay_time = (len(route)-1) * stay_time
-                    move_time = (total_distance_covered/travel_speed)
-                    travel_time = (total_distance_covered/travel_speed) + (len(route)-1) * stay_time
+                    move_time = (total_distance_covered/travel_speed) * 3.262
+                    travel_time = (total_distance_covered/travel_speed) * 3.262 + (len(route)-1) * stay_time
 
                     print("\nRoute: ", end="")
                     for st in route:
@@ -255,6 +255,7 @@ def main():
                 print("")
 
             else:
+                print("Unrecognized command:", frame_cmd[0])
                 pass
         
         glfw.poll_events()
