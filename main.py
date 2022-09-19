@@ -82,7 +82,7 @@ def main():
 
     # available travel modes are 'commute' and 'sightseeing'
     travel_mode = "commute"
-    max_jump = 10/3.262 # ly/3.262 = parsecs
+    max_jump = 10 * 3.262 # ly * 3.262 = parsecs
     travel_speed = 0.9 # c
     stay_time = 0.25 # years
 
@@ -116,7 +116,7 @@ def main():
         if travel_mode == "commute":
 
             while not system_destination in route:
-                cstars = get_stars_within(route[-1], max_jump)
+                cstars = get_stars_within(route[-1], max_jump/3.262)
 
                 if system_destination in cstars:
                     route.append(system_destination)
@@ -146,8 +146,8 @@ def main():
 
                     print("INPUT Travel speed (c) = ", travel_speed)
                     print("INPUT Stay time (years) = ", stay_time)
-                    print("Target distance (ly):", target_dist/3.262)
-                    print("Route length (ly):", total_distance_covered/3.262)
+                    print("Target distance (ly):", target_dist * 3.262)
+                    print("Route length (ly):", total_distance_covered * 3.262)
                     print("Total travel time (years):", travel_time)
                     print("Total in-system stay time (years):", total_stay_time)
                     print("Total time spent in interstellar medium (years):", move_time)
@@ -209,10 +209,26 @@ def main():
             frame_cmd[0] = frame_cmd[0].lower()
             
             if frame_cmd[0] == "set_start":
-                system_start = find_system_by_name(frame_cmd[1])
+                
+                sys_name = ""
+                for cmd_element in range(len(frame_cmd)):
+                    if 0 < cmd_element < len(frame_cmd)-1:
+                        sys_name += frame_cmd[cmd_element] + " "
+                    elif cmd_element == len(frame_cmd)-1:
+                        sys_name += frame_cmd[cmd_element]
+                    
+                system_start = find_system_by_name(sys_name)
 
             elif frame_cmd[0] == "set_destination":
-                system_destination = find_system_by_name(frame_cmd[1])
+                
+                sys_name = ""
+                for cmd_element in range(len(frame_cmd)):
+                    if 0 < cmd_element < len(frame_cmd)-1:
+                        sys_name += frame_cmd[cmd_element] + " "
+                    elif cmd_element == len(frame_cmd)-1:
+                        sys_name += frame_cmd[cmd_element]
+                        
+                system_destination = find_system_by_name(sys_name)
 
             elif frame_cmd[0] == "set_max_jump":
                 max_jump = float(frame_cmd[1])
