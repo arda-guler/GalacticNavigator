@@ -1,0 +1,4 @@
+https://github.com/astronexus/HYG-Database
+
+The HYG data set (hygdata_v3.csv) is licensed by a Creative Commons Attribution-ShareAlike license. 
+For more details, read the Creative Commons page (https://creativecommons.org/licenses/by-sa/2.5/).
