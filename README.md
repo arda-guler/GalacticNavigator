@@ -1,6 +1,6 @@
 # GalacticNavigator
 
-![galactic_nav](https://user-images.githubusercontent.com/80536083/191112877-fd1e4861-c00a-403d-b310-30159c31b076.PNG)
+![gnav2](https://user-images.githubusercontent.com/80536083/191128419-b2622892-e18d-46ac-97f4-ff5e19dedce0.PNG)
 
 A simple interstellar travel planner and calculator for futuristic space navigation. Useful tool for hard-science fiction fans and curious minds. Adjust your travel parameters and plot routes between star systems.
 
