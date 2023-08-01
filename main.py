@@ -130,9 +130,15 @@ def main():
 
                     total_stay_time = (len(route)-1) * stay_time
                     move_time = (total_distance_covered/travel_speed) * 3.262
-                    experienced_move_time = move_time * math.sqrt(1 - travel_speed**2)
+                    if travel_speed < 1:
+                        experienced_move_time = move_time * math.sqrt(1 - travel_speed**2)
+                    else:
+                        experienced_move_time = "UNAVAILABLE: Travel speed >= c!"
                     travel_time = (total_distance_covered/travel_speed) * 3.262 + (len(route)-1) * stay_time
-                    experienced_travel_time = experienced_move_time + (len(route)-1) * stay_time
+                    if travel_speed < 1:
+                        experienced_travel_time = experienced_move_time + (len(route)-1) * stay_time
+                    else:
+                        experienced_travel_time = "UNAVAILABLE: Travel speed >= c!"
 
                     print("\nRoute: ", end="")
                     for st in route:
