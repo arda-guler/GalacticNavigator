@@ -130,7 +130,9 @@ def main():
 
                     total_stay_time = (len(route)-1) * stay_time
                     move_time = (total_distance_covered/travel_speed) * 3.262
+                    experienced_move_time = move_time * math.sqrt(1 - travel_speed**2)
                     travel_time = (total_distance_covered/travel_speed) * 3.262 + (len(route)-1) * stay_time
+                    experienced_travel_time = experienced_move_time + (len(route)-1) * stay_time
 
                     print("\nRoute: ", end="")
                     for st in route:
@@ -149,8 +151,10 @@ def main():
                     print("Target distance (ly):", target_dist * 3.262)
                     print("Route length (ly):", total_distance_covered * 3.262)
                     print("Total travel time (years):", travel_time)
+                    print("Total experienced travel time (years):", experienced_travel_time)
                     print("Total in-system stay time (years):", total_stay_time)
                     print("Total time spent in interstellar medium (years):", move_time)
+                    print("Total time spent in interstellar medium as experienced by the traveller (years):", experienced_move_time)
                     return route
 
                 else:
@@ -218,6 +222,7 @@ def main():
                         sys_name += frame_cmd[cmd_element]
                     
                 system_start = find_system_by_name(sys_name)
+                print("Starting point set to " + sys_name)
 
             elif frame_cmd[0] == "set_destination":
                 
@@ -229,29 +234,32 @@ def main():
                         sys_name += frame_cmd[cmd_element]
                         
                 system_destination = find_system_by_name(sys_name)
+                print("Destination set to " + sys_name)
 
             elif frame_cmd[0] == "set_max_jump":
                 max_jump = float(frame_cmd[1])
+                print("Max jump set to " + str(max_jump) + " ly")
 
             elif frame_cmd[0] == "set_travel_speed":
                 travel_speed = float(frame_cmd[1])
+                print("Travel speed set to " + str(travel_speed) + " c")
 
             elif frame_cmd[0] == "set_stay_time":
                 stay_time = float(frame_cmd[1])
-
-            elif frame_cmd[0] == "set_max_jump":
-                max_jump = float(frame_cmd[1]/3.262)
+                print("Stay time set to " + str(stay_time) + " years")
 
             elif frame_cmd[0] == "set_mode":
                 travel_mode = frame_cmd[1]
+                print("Travel mode set to " + travel_mode)
 
             elif frame_cmd[0] == "compute":
+                print("Computing (depending on the parameters, this might take a while)...")
                 waypoints = compute_route()
 
             elif frame_cmd[0] == "h" or frame_cmd[0] == "help":
                 print("")
                 print("Congrats! You entered a command! Any commands can be entered this way.")
-                print("Available commands: 'set_start <star_system_name>', 'set_destination <star_system_name>', 'compute', 'set_max_jump <number>', 'set_travel_speed <number>', 'set_stay_time <number>'")
+                print("Available commands: 'set_start <star_system_name>', 'set_destination <star_system_name>', 'compute', 'set_max_jump <number>', 'set_travel_speed <number>', 'set_stay_time <number>', set_mode <mode (commute/sightseeing)>")
                 print("")
 
             else:
